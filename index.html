@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PC Style Website</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI", monospace;
+}
+
+body{
+  height:100vh;
+  background:url("Indoor.jpg") no-repeat center/cover;
+  overflow:hidden;
+}
+
+/* ===== LOADING SCREEN ===== */
+#loadingScreen{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:50;
+}
+
+#loadingScreen h1{
+  color:#39ff14; /* Neon green */
+  font-size:50px;
+  text-shadow:0 0 10px #39ff14,0 0 20px #39ff14,0 0 30px #39ff14;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink{
+  0%,50%,100%{opacity:1;}
+  25%,75%{opacity:0.3;}
+}
+
+/* ===== TOP MUSIC BAR ===== */
+#musicBar{
+  height:50px;
+  background:rgba(0,0,0,0.8);
+  color:green;
+  text-align:center;
+  line-height:50px;
+  cursor:pointer;
+  border-bottom:2px solid red;
+}
+
+/* ===== PC MODE ===== */
+#pcOverlay{
+  position:fixed;
+  inset:0;
+  background:black;
+  color:green;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+}
+
+#pcOverlay h1{
+  font-size:48px;
+  text-shadow:0 0 20px green;
+}
+
+#pcOverlay p{color:red;}
+
+#pcOverlay button{
+  margin-top:20px;
+  padding:10px 25px;
+  background:black;
+  color:green;
+  border:2px solid green;
+  cursor:pointer;
+}
+
+/* ===== MAIN ===== */
+.main{
+  display:flex;
+  height:calc(100vh - 50px);
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+  width:260px;
+  background:rgba(0,0,0,0.55);
+  padding:20px 10px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.item{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  cursor:pointer;
+}
+
+.icon{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  color:white;
+}
+
+.text{
+  color:black;
+  font-weight:bold;
+  text-shadow:0 0 15px green;
+}
+
+.item:hover .text{
+  text-shadow:0 0 30px red,0 0 50px green;
+}
+
+.youtube{background:#ff0000;}
+.telegram{background:#0088cc;}
+.instagram{background:#e1306c;}
+
+/* ===== INFO PANEL ===== */
+.info{
+  flex:1;
+  padding:40px;
+  background:rgba(0,0,0,0.4);
+  color:green;
+}
+
+.info h1{color:red;}
+.info p{margin:8px 0;}
+
+/* ===== BIG BUTTONS ===== */
+.big-buttons{
+  margin-top:25px;
+  display:flex;
+  gap:25px;
+}
+
+.big-btn{
+  width:220px;
+  height:90px;
+  background:black;
+  border:2px solid green;
+  color:green;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:20px;
+  cursor:pointer;
+  text-shadow:0 0 15px green;
+}
+
+.big-btn:hover{
+  box-shadow:0 0 30px red;
+}
+
+/* ===== FUN SCREEN ===== */
+#funScreen{
+  position:fixed;
+  inset:0;
+  background:black;
+  color:white;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  font-size:40px;
+  z-index:20;
+}
+
+/* ===== OPINION BOX ===== */
+#opinionBox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:20;
+}
+
+#opinionBox form{
+  background:black;
+  padding:30px;
+  border:2px solid green;
+}
+
+/* ===== RATING ===== */
+.rating-box{
+  margin-top:25px;
+  background:black;
+  padding:20px;
+  border:2px solid green;
+  width:420px;
+}
+
+.stars i{
+  font-size:30px;
+  cursor:pointer;
+  color:gray;
+}
+
+.stars i.active{
+  color:gold;
+  text-shadow:0 0 15px gold;
+}
+
+.rating-info{
+  margin-top:10px;
+  color:green;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loadingScreen">
+  <h1>Loading..</h1>
+</div>
+
+<!-- MUSIC -->
+<div id="musicBar">🎵 Click For Peace Music</div>
+<audio id="music" src="Outdoor.mp3"></audio>
+
+<!-- PC MODE -->
+<div id="pcOverlay">
+  <h1>PC MODE</h1>
+  <p>Menu → Desktop site ON</p>
+  <button onclick="closeOverlay()">Enter</button>
+</div>
+
+<!-- FUN SCREEN -->
+<div id="funScreen">Its Just For Fun 😄</div>
+
+<!-- OPINION -->
+<div id="opinionBox">
+  <form action="mailto:example@gmail.com" method="post" enctype="text/plain">
+    <h3 style="color:green">Your Opinion</h3>
+    <textarea name="message" style="width:300px;height:120px"></textarea><br><br>
+    <button type="submit">Send</button>
+    <button type="button" onclick="closeOpinion()">Close</button>
+  </form>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+<div class="sidebar">
+  <div class="item" onclick="openLink('https://www.youtube.com/@mx-okamiz57')">
+    <div class="icon youtube"><i class="fab fa-youtube"></i></div>
+    <div class="text">Subscribe My Youtube</div>
+  </div>
+  <div class="item" onclick="openLink('https://t.me/EditingCourt')">
+    <div class="icon telegram"><i class="fab fa-telegram"></i></div>
+    <div class="text">Join For PfP</div>
+  </div>
+  <div class="item" onclick="openLink('https://www.instagram.com/your_avery36/?__pwa=1')">
+    <div class="icon instagram"><i class="fab fa-instagram"></i></div>
+    <div class="text">Visit For Contact</div>
+  </div>
+</div>
+
+<div class="info">
+  <h1>Hello I Am Mahim</h1>
+  <p>SSC 2027 Batch / Learning Web</p>
+  <p>From Tangail [BD]</p>
+
+  <!-- BIG BUTTONS -->
+  <div class="big-buttons">
+    <div class="big-btn" onclick="showFun()">See Fun</div>
+    <div class="big-btn" onclick="showOpinion()">My Opinion</div>
+  </div>
+
+  <!-- ⭐ RATING SYSTEM -->
+  <div class="rating-box">
+    <div class="stars">
+      <i class="fas fa-star" data-star="1"></i>
+      <i class="fas fa-star" data-star="2"></i>
+      <i class="fas fa-star" data-star="3"></i>
+      <i class="fas fa-star" data-star="4"></i>
+      <i class="fas fa-star" data-star="5"></i>
+    </div>
+    <div class="rating-info">
+      Rated by <span id="users">0</span> people |
+      Total Stars: <span id="totalStars">0</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+/* ===== LOADING SCREEN ===== */
+window.addEventListener("load",()=>{
+  setTimeout(()=>document.getElementById("loadingScreen").style.display="none",3000);
+});
+
+/* ===== MUSIC ===== */
+const music=document.getElementById("music");
+let playing=false;
+document.getElementById("musicBar").onclick=()=>{
+  playing?music.pause():music.play();
+  playing=!playing;
+};
+
+/* ===== PC MODE ===== */
+function closeOverlay(){document.getElementById("pcOverlay").style.display="none";}
+function openLink(url){window.open(url,"_blank");}
+
+/* ===== FUN & OPINION ===== */
+function showFun(){const f=document.getElementById("funScreen"); f.style.display="flex"; setTimeout(()=>f.style.display="none",5000);}
+function showOpinion(){document.getElementById("opinionBox").style.display="flex";}
+function closeOpinion(){document.getElementById("opinionBox").style.display="none";}
+
+/* ===== RATING ===== */
+let totalStars=0, users=0, selected=0;
+const stars=document.querySelectorAll(".stars i");
+stars.forEach(star=>{
+  star.onclick=()=>{
+    selected=star.dataset.star;
+    stars.forEach(s=>s.classList.toggle("active", s.dataset.star<=selected));
+    users++;
+    totalStars+=parseInt(selected);
+    document.getElementById("users").innerText=users;
+    document.getElementById("totalStars").innerText=totalStars;
+  }
+});
+</script>
+
+</body>
+</html>
