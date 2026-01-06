@@ -19,8 +19,27 @@ body{
   height:100vh;
   background:url("Interpull.jpg") no-repeat center/cover;
   overflow:hidden;
+  color:black;  /* ok, text black */
+  text-shadow:0 0 3px rgba(255,255,255,0.7); /* subtle glow for visibility */
+}
+
+/* Remove dark sidebar background */
+.sidebar{
+  width:260px;
+  background:rgba(255,255,255,0.05); /* almost transparent */
+  padding:20px 10px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+/* Info panel background remove / transparent */
+.info{
+  flex:1;
+  padding:40px;
+  background:rgba(255,255,255,0.05); /* subtle transparent */
   color:black;
-  text-shadow: 0 0 5px rgba(0,0,0,0.3);
+  text-shadow:0 0 3px rgba(255,255,255,0.7);
 }
 
 /* ===== LOADING SCREEN ===== */
